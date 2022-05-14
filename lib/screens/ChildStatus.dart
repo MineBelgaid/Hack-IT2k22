@@ -43,6 +43,16 @@ class _ChildStatusState extends State<ChildStatus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.transparent,
+        //remove shadows
+        elevation: 0,
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: Icon(Icons.arrow_back_ios_new,color: Colors.white,),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: SingleChildScrollView(
         child: Container(
           color: Color(0xffFFFDF7),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackit3/screens/AddChild.dart';
 
 import 'package:hackit3/screens/Splash.dart';
 

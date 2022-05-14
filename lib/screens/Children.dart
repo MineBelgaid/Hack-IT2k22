@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors,prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:hackit3/screens/AddChild.dart';
 import 'package:hackit3/screens/ChildStatus.dart';
 
 class Children extends StatelessWidget {
@@ -10,25 +11,25 @@ class Children extends StatelessWidget {
       "name": "Amine",
       "nbrNotif": 2,
       "distance": 700,
-      "image":"assets/avatar.png",
+      "image": "assets/avatar.png",
     },
     {
       "name": "Boubek",
       "nbrNotif": 2,
-      "distance": 700,
-      "image":"assets/avatar.png",
+      "distance": 200,
+      "image": "assets/avatar.png",
     },
     {
       "name": "Cedric",
       "nbrNotif": 0,
-      "distance": 700,
-      "image":"assets/avatar.png",
+      "distance": 340,
+      "image": "assets/avatar.png",
     },
     {
       "name": "Dorian",
       "nbrNotif": 2,
-      "distance": 700,
-      "image":"assets/avatar.png",
+      "distance": 90,
+      "image": "assets/avatar.png",
     },
   ];
   @override
@@ -44,10 +45,37 @@ class Children extends StatelessWidget {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(),
+              Text(
+                  "Auctor curabitur taciti at justo, mauris elemen tum malesuada dictumst duis scelerisque nunc, quis rutrum!",
+                  style: TextStyle(fontSize: 15, color: Colors.grey)),
               Expanded(
                 child: ListView.builder(
-                  itemCount: children.length,
+                  itemCount: children.length+1,
                   itemBuilder: (context, index) {
+                    if (index == 4) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddChild()));
+                        },
+                        child: Container(
+                          child: Center(child: Text("+",style: TextStyle(
+                            fontSize: 50,
+                            color: Colors.white
+                          ),)),
+                          margin: EdgeInsets.only(top: 20),
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          decoration: BoxDecoration(
+                            color: Color(0xbb8ABFCB),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      );
+                    }
+
                     return Child(
                       child: children[index],
                     );
@@ -66,13 +94,10 @@ class Child extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ChildStatus()));
+            context, MaterialPageRoute(builder: (context) => ChildStatus()));
       },
-
       child: Container(
         height: MediaQuery.of(context).size.height * 0.1,
         padding: EdgeInsets.symmetric(horizontal: 25),
@@ -99,30 +124,27 @@ class Child extends StatelessWidget {
                 Text(
                   child["name"],
                   textAlign: TextAlign.left,
-                  style: TextStyle(color: Colors.white,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w600
-                  ),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600),
                 ),
                 Text(child["distance"].toString() + "m away",
-                style: TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600)
-                ),
+                        fontWeight: FontWeight.w600)),
               ],
             ),
-    
             Expanded(child: SizedBox()),
             child["nbrNotif"] > 0
                 ? Container(
                     width: 20,
                     height: 20,
-                    
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle, 
-                        color: Colors.red,
-                        ),
+                      shape: BoxShape.circle,
+                      color: Colors.red,
+                    ),
                     child: Center(
                         child: Text(
                       child["nbrNotif"].toString(),
@@ -130,15 +152,15 @@ class Child extends StatelessWidget {
                     )),
                   )
                 : Container(),
-    
             Text("  View State",
-            style: TextStyle(
+                style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w600)),
-                    Icon(Icons.arrow_forward_ios,color: Colors.white,),
-            // Text(children[index]["nbrNotif"].toString() + " notificatio"),
-            // Text(children[index]["name"]),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.white,
+            ),
           ],
         ),
       ),
